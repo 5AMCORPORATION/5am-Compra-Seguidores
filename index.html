@@ -18,6 +18,9 @@
             --emerald-main: #006A4E;
             --emerald-light: #00844F;
             --emerald-glow: rgba(0, 106, 78, 0.4);
+
+            /* Verde WhatsApp */
+            --whatsapp-green: #25D366;
             
             --text-primary: #f5f5f7;
             --text-secondary: #86868b;
@@ -115,7 +118,7 @@
         /* --- ICONOS DE REDES SOCIALES --- */
         .social-matrix {
             display: flex;
-            justify-content: center;
+            justify(content: center;
             gap: 18px;
             margin-top: 10px;
         }
@@ -138,6 +141,7 @@
         .social-btn.tiktok { color: #25F4EE; text-shadow: -1px 0 #FE2C55; }
         .social-btn.facebook { color: #1877F2; }
         .social-btn.youtube { color: #FF0000; }
+        .social-btn.whatsapp { color: #25D366; }
 
         .social-btn:hover {
             transform: translateY(-3px) scale(1.05);
@@ -415,7 +419,7 @@
             color: var(--emerald-light);
         }
 
-        /* --- MODAL DE RESUMEN --- */
+        /* --- MODAL DE RESUMEN WHATSAPP --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -458,13 +462,13 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: rgba(0, 106, 78, 0.15);
-            border: 1px solid var(--emerald-light);
-            color: var(--emerald-light);
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid var(--whatsapp-green);
+            color: var(--whatsapp-green);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0 auto 18px auto;
         }
 
@@ -501,7 +505,7 @@
         .order-summary-box div:last-child { margin-bottom: 0; }
 
         .btn-modal-action {
-            background: linear-gradient(135deg, #E4405F 0%, #C13584 100%);
+            background: var(--whatsapp-green);
             color: #ffffff;
             border: none;
             padding: 16px;
@@ -513,10 +517,17 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 8px 20px rgba(228, 64, 95, 0.3);
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
             transition: var(--transition-smooth);
             text-decoration: none;
+            animation: pulseWhatsApp 2s infinite;
+        }
+
+        @keyframes pulseWhatsApp {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
         .btn-modal-action:hover {
@@ -553,16 +564,16 @@
         <!-- CABECERA -->
         <header class="brand-header">
             <div class="badge-status">
-                <i class="fa-solid fa-circle"></i> Access Private
+                <i class="fa-solid fa-circle"></i> Private Network Access
             </div>
             <h1>5am Followers</h1>
             <p>La autoridad digital no se pide, se adquiere. Posiciona tu perfil en la cima del algoritmo con infraestructura de crecimiento instantáneo.</p>
             
             <div class="social-matrix">
+                <a href="#" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 <a href="#" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="social-btn youtube" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
             </div>
         </header>
 
@@ -570,7 +581,7 @@
         <section class="checkout-card">
             
             <div class="input-group">
-                <label class="input-label">1. Link del perfil</label>
+                <label class="input-label">1. Nombre de Usuario</label>
                 <input type="text" id="target-user" class="custom-input" placeholder="@tu_usuario_oficial" autocomplete="off">
             </div>
 
@@ -596,10 +607,23 @@
                     </select>
                 </div>
 
-                <!-- Campo dinámico para cotizaciones a medida -->
                 <div class="custom-quantity-container" id="custom-container">
                     <label class="input-label" style="margin-top: 15px;">Escribe la cantidad exacta deseada:</label>
-                    <input type="number" id="custom-qty-input" class="custom-input" placeholder="Ej. 7500, 25000, 150000..." min="100" oninput="calculateCustomPrice()">
+                    <input type="number" id="custom-qty-input" class="custom-input" placeholder="Ej. 7500, 25000..." min="100" oninput="calculateCustomPrice()">
+                </div>
+            </div>
+
+            <!-- NUEVO: SECTOR MÉTODO DE PAGO -->
+            <div class="input-group">
+                <label class="input-label">3. Método de Pago Preferido</label>
+                <div class="select-box">
+                    <select id="payment-method" class="custom-select">
+                        <option value="" disabled selected>Elige cómo deseas pagar</option>
+                        <option value="Transferencia">Transferencia Bancaria (México)</option>
+                        <option value="Oxxo">Depósito en Oxxo</option>
+                        <option value="PayPal">PayPal (+Comisión)</option>
+                        <option value="Cripto">Criptomonedas (USDT/BTC)</option>
+                    </select>
                 </div>
             </div>
 
@@ -637,8 +661,8 @@
                 </div>
                 <div class="step-card">
                     <div class="step-num">3</div>
-                    <h4>Enviar por DM</h4>
-                    <p>Transfiere tu orden a nuestro Instagram para el inicio.</p>
+                    <h4>Enviar por WhatsApp</h4>
+                    <p>Confirma tu orden y método de pago por chat.</p>
                 </div>
             </div>
         </section>
@@ -649,11 +673,11 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>¿Por qué la venta se finaliza en Instagram?</span>
+                    <span>¿Por qué la venta se finaliza por WhatsApp?</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Garantiza un trato directo, verificación manual de la cuenta de destino para evitar errores y métodos de pago seguros asistidos por un operador.
+                    Garantiza un trato directo, verificación manual de la cuenta de destino y te proporcionamos los datos de pago exactos según el método que elegiste.
                 </div>
             </div>
 
@@ -673,46 +697,47 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    El procesamiento inicia en minutos tras confirmar la transferencia en el chat directo de Instagram.
+                    El procesamiento inicia en minutos tras confirmar tu pago en el chat de WhatsApp.
                 </div>
             </div>
         </section>
 
         <footer>
-            &copy; 2026 5AM FOLLOWERS.
+            &copy; 2026 5AM FOLLOWERS. ALL RIGHTS RESERVED.
         </footer>
 
     </div>
 
-    <!-- MODAL DE PEDIDO -->
+    <!-- MODAL DE PEDIDO WHATSAPP -->
     <div class="modal-overlay" id="orderModal">
         <div class="modal-card">
             <div class="modal-icon">
-                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-whatsapp"></i>
             </div>
             <h3>Orden Preparada</h3>
-            <p>Se ha generado tu ficha de pedido. Para iniciar el envío inmediato, envía el resumen directo a nuestra cuenta oficial de Instagram.</p>
+            <p>Se ha generado tu ficha de pedido. Para iniciar el envío inmediato, envía el resumen directamente a nuestro WhatsApp oficial.</p>
             
             <div class="order-summary-box">
                 <div><span>Usuario:</span> <strong id="modal-user">@--</strong></div>
                 <div><span>Paquete:</span> <strong id="modal-qty">--</strong></div>
+                <div><span>Pago:</span> <strong id="modal-pay">--</strong></div>
                 <div><span>Total:</span> <strong id="modal-total">$0 MXN</strong></div>
             </div>
 
-            <a id="instagram-link" href="#" target="_blank" class="btn-modal-action">
-                <i class="fa-regular fa-paper-plane"></i>
-                <span>Enviar DM e Iniciar Orden</span>
+            <a id="whatsapp-link" href="#" target="_blank" class="btn-modal-action">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Enviar por WhatsApp e Iniciar</span>
             </a>
 
             <button class="btn-close-modal" onclick="closeOrderModal()">Modificar Orden</button>
         </div>
     </div>
 
-    <!-- SCRIPT MATEMÁTICO DE INTERPOLACIÓN Y LÓGICA -->
+    <!-- SCRIPT MATEMÁTICO Y LÓGICA -->
     <script>
-        const INSTAGRAM_OFFICIAL = "5am.followers_worldwide";
+        // CONFIGURACIÓN: Tu número de WhatsApp con código de país (ej: 521 para MX)
+        const TELEFONO_WHATSAPP = "521234567890"; 
 
-        // TABLA BASE MATEMÁTICA (Seguidores vs Precio)
         const pricingTable = [
             { qty: 500, price: 90 },
             { qty: 1000, price: 120 },
@@ -732,31 +757,21 @@
         let computedPrice = 0;
         let finalQuantityText = "";
 
-        // ALGORITMO MATEMÁTICO DE INTERPOLACIÓN LINEAL
         function calculateCustomAlgorithm(qty) {
             if (qty <= 0) return 0;
-            
-            // Si es menor al mínimo (500)
             if (qty < pricingTable[0].qty) {
                 const baseRate = pricingTable[0].price / pricingTable[0].qty;
                 return Math.round(qty * baseRate);
             }
-
-            // Buscar en qué intervalo se encuentra la cantidad ingresada
             for (let i = 0; i < pricingTable.length - 1; i++) {
                 let p1 = pricingTable[i];
                 let p2 = pricingTable[i + 1];
-
                 if (qty >= p1.qty && qty <= p2.qty) {
-                    // Cálculo de la pendiente (m) = (P2 - P1) / (Q2 - Q1)
                     let slope = (p2.price - p1.price) / (p2.qty - p1.qty);
-                    // Interpolación: P = P1 + slope * (Q - Q1)
                     let interpolatedPrice = p1.price + slope * (qty - p1.qty);
                     return Math.round(interpolatedPrice);
                 }
             }
-
-            // Si supera la escala máxima (100,000+), aplicamos la tarifa por cada mil extra de la última escala
             let lastTier = pricingTable[pricingTable.length - 1];
             let prevTier = pricingTable[pricingTable.length - 2];
             let extendedRate = (lastTier.price - prevTier.price) / (lastTier.qty - prevTier.qty);
@@ -796,41 +811,50 @@
             }
 
             computedPrice = calculateCustomAlgorithm(qty);
-            finalQuantityText = `${qty.toLocaleString()} Followers (Cotización Especial)`;
+            finalQuantityText = `${qty.toLocaleString()} Followers (Cotización)`;
             display.innerHTML = `$${computedPrice.toLocaleString()} <span style="font-size: 1rem; color: var(--text-secondary);">MXN</span>`;
         }
 
         function openOrderModal() {
             const user = document.getElementById('target-user').value.trim();
-            const select = document.getElementById('follower-tier');
+            const selectTier = document.getElementById('follower-tier');
+            const selectPay = document.getElementById('payment-method');
 
             if (!user) {
-                alert("Por favor ingresa tu nombre de usuario de Instagram.");
+                alert("Ingresa tu usuario de Instagram.");
                 document.getElementById('target-user').focus();
                 return;
             }
-
-            if (!select.value) {
-                alert("Por favor selecciona una escala o ingresa una cantidad personalizada.");
-                select.focus();
+            if (!selectTier.value) {
+                alert("Selecciona una cantidad.");
+                selectTier.focus();
                 return;
             }
-
-            if (select.value === 'custom' && (!computedPrice || computedPrice <= 0)) {
-                alert("Ingresa una cantidad válida de seguidores.");
+            if (!selectPay.value) {
+                alert("Selecciona un método de pago.");
+                selectPay.focus();
+                return;
+            }
+            if (selectTier.value === 'custom' && (!computedPrice || computedPrice <= 0)) {
+                alert("Ingresa una cantidad válida.");
                 document.getElementById('custom-qty-input').focus();
                 return;
             }
 
-            // Datos para la modal
+            const paymentMethod = selectPay.value;
+
+            // Cargar Modal
             document.getElementById('modal-user').innerText = user.startsWith('@') ? user : `@${user}`;
             document.getElementById('modal-qty').innerText = finalQuantityText;
+            document.getElementById('modal-pay').innerText = paymentMethod;
             document.getElementById('modal-total').innerText = `$${computedPrice.toLocaleString()} MXN`;
 
-            // Construir enlace directo
-            const textMessage = `Hola! Quiero activar la orden para ${user}. Paquete: ${finalQuantityText} ($${computedPrice.toLocaleString()} MXN). Vengo desde la página web de 5am Followers.`;
-            const igUrl = `https://www.instagram.com/${INSTAGRAM_OFFICIAL}/`;
-            document.getElementById('instagram-link').href = igUrl;
+            // Mensaje WhatsApp
+            const mensaje = `Hola 5am Followers! Quiero una orden.\n\n👤 Usuario: ${user}\n📦 Paquete: ${finalQuantityText}\n💳 Pago: ${paymentMethod}\n💰 Total: $${computedPrice.toLocaleString()} MXN\n\nEspero instrucciones para pagar.`;
+            const mensajeEncoded = encodeURIComponent(mensaje);
+            
+            // Link WA
+            document.getElementById('whatsapp-link').href = `https://wa.me/${TELEFONO_WHATSAPP}?text=${mensajeEncoded}`;
 
             document.getElementById('orderModal').classList.add('active');
         }
@@ -839,7 +863,7 @@
             document.getElementById('orderModal').classList.remove('active');
         }
 
-        // Acordeón Preguntas Frecuentes
+        // FAQ Acordeón
         document.querySelectorAll('.faq-question').forEach(q => {
             q.addEventListener('click', () => {
                 const item = q.parentElement;
