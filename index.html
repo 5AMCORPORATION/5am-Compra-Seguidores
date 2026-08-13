@@ -103,7 +103,6 @@
             margin-bottom: 14px;
         }
 
-        /* Frase Gancho */
         .brand-header p {
             font-size: 1.05rem;
             color: var(--text-secondary);
@@ -113,7 +112,7 @@
             margin: 0 auto 25px auto;
         }
 
-        /* --- ICONOS CON SUS COLORES OFICIALES --- */
+        /* --- ICONOS DE REDES SOCIALES --- */
         .social-matrix {
             display: flex;
             justify-content: center;
@@ -135,7 +134,6 @@
             text-decoration: none;
         }
 
-        /* Colores Oficiales */
         .social-btn.instagram { color: #E4405F; }
         .social-btn.tiktok { color: #25F4EE; text-shadow: -1px 0 #FE2C55; }
         .social-btn.facebook { color: #1877F2; }
@@ -148,7 +146,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
 
-        /* --- CARD PRINCIPAL DE COMPRA (INMEDIATA) --- */
+        /* --- CARD PRINCIPAL DE COMPRA --- */
         .checkout-card {
             background: var(--surface-card);
             border: 1px solid var(--border-glass);
@@ -221,7 +219,19 @@
             pointer-events: none;
         }
 
-        /* Muestra de Precio con Brillo */
+        /* Input especial de Cotización Personalizada */
+        .custom-quantity-container {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Muestra de Precio */
         .price-wrapper {
             background: rgba(0, 106, 78, 0.06);
             border: 1px solid rgba(0, 106, 78, 0.2);
@@ -247,7 +257,7 @@
             letter-spacing: 0.1em;
         }
 
-        /* BOTÓN DE ACCIÓN ESMERALDA */
+        /* BOTÓN ESMERALDA */
         .btn-emerald {
             width: 100%;
             padding: 18px;
@@ -278,7 +288,7 @@
             transform: translateY(0) scale(0.98);
         }
 
-        /* --- SECCIÓN DE PASOS A SEGUIR (ABAJO) --- */
+        /* --- PASOS A SEGUIR --- */
         .instructions-section {
             margin-bottom: 50px;
         }
@@ -294,7 +304,7 @@
         .video-box {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* Aspect ratio 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             background: #0d0d0f;
             border-radius: 20px;
@@ -355,7 +365,7 @@
             line-height: 1.3;
         }
 
-        /* --- PREGUNTAS FRECUENTES (HASTA ABAJO) --- */
+        /* --- PREGUNTAS FRECUENTES --- */
         .faq-section {
             border-top: 1px solid var(--border-glass);
             padding-top: 40px;
@@ -405,7 +415,7 @@
             color: var(--emerald-light);
         }
 
-        /* --- MODAL ELEGANTE (NUEVO DISEÑO PROFESIONAL DE DM) --- */
+        /* --- MODAL DE RESUMEN --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -540,16 +550,14 @@
 
     <div class="container">
 
-        <!-- CABECERA: MARCA & GANCHO -->
+        <!-- CABECERA -->
         <header class="brand-header">
             <div class="badge-status">
                 <i class="fa-solid fa-circle"></i> Private Network Access
             </div>
             <h1>5am Followers</h1>
-            <!-- Frase Gancho de Alto Estatus -->
             <p>La autoridad digital no se pide, se adquiere. Posiciona tu perfil en la cima del algoritmo con infraestructura de crecimiento instantáneo.</p>
             
-            <!-- Redes con Colores Oficiales -->
             <div class="social-matrix">
                 <a href="#" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
@@ -558,7 +566,7 @@
             </div>
         </header>
 
-        <!-- COMPRA INMEDIATA (ARRIBA) -->
+        <!-- COMPRA E INTERACTIVO DE COTIZACIÓN -->
         <section class="checkout-card">
             
             <div class="input-group">
@@ -569,22 +577,36 @@
             <div class="input-group">
                 <label class="input-label">2. Cantidad de Seguidores</label>
                 <div class="select-box">
-                    <!-- PRECIOS EDITABLES EN DATA-PRICE -->
-                    <select id="follower-tier" class="custom-select" onchange="calculatePrice()">
+                    <select id="follower-tier" class="custom-select" onchange="handleTierChange()">
                         <option value="" disabled selected>Selecciona la escala de crecimiento</option>
-                        <option value="500" data-price="9.99">500 Seguidores // Nivel Standard</option>
-                        <option value="1000" data-price="17.99">1,000 Seguidores // Nivel Pro Status</option>
-                        <option value="2500" data-price="39.99">2,500 Seguidores // Nivel Elite</option>
-                        <option value="5000" data-price="69.99">5,000 Seguidores // Nivel Authority</option>
-                        <option value="10000" data-price="129.99">10,000 Seguidores // Nivel Brand Master</option>
+                        <option value="500" data-price="90">500 Followers — $90</option>
+                        <option value="1000" data-price="120">1,000 Followers — $120</option>
+                        <option value="1500" data-price="190">1,500 Followers — $190</option>
+                        <option value="2000" data-price="210">2,000 Followers — $210</option>
+                        <option value="3000" data-price="259">3,000 Followers — $259</option>
+                        <option value="5000" data-price="385">5,000 Followers — $385</option>
+                        <option value="10000" data-price="550">10,000 Followers — $550</option>
+                        <option value="15000" data-price="780">15,000 Followers — $780</option>
+                        <option value="20000" data-price="890">20,000 Followers — $890</option>
+                        <option value="30000" data-price="1090">30,000 Followers — $1,090</option>
+                        <option value="40000" data-price="1300">40,000 Followers — $1,300</option>
+                        <option value="50000" data-price="1890">50,000 Followers — $1,890</option>
+                        <option value="100000" data-price="2350">100,000 Followers — $2,350</option>
+                        <option value="custom">⚡ Cotización Personalizada (Otra cantidad)</option>
                     </select>
+                </div>
+
+                <!-- Campo dinámico para cotizaciones a medida -->
+                <div class="custom-quantity-container" id="custom-container">
+                    <label class="input-label" style="margin-top: 15px;">Escribe la cantidad exacta deseada:</label>
+                    <input type="number" id="custom-qty-input" class="custom-input" placeholder="Ej. 7500, 25000, 150000..." min="100" oninput="calculateCustomPrice()">
                 </div>
             </div>
 
             <!-- Display de Precio -->
             <div class="price-wrapper" id="price-card">
-                <div class="currency">Inversión Directa</div>
-                <div class="amount" id="display-price">$0.00 <span style="font-size: 1rem; color: var(--text-secondary);">USD</span></div>
+                <div class="currency">Inversión Estimada</div>
+                <div class="amount" id="display-price">$0 <span style="font-size: 1rem; color: var(--text-secondary);">MXN</span></div>
             </div>
 
             <button class="btn-emerald" onclick="openOrderModal()">
@@ -594,16 +616,14 @@
 
         </section>
 
-        <!-- GUÍA Y PASOS A SEGUIR (DESPUÉS DE COMPRAR) -->
+        <!-- GUÍA Y PASOS A SEGUIR -->
         <section class="instructions-section">
             <h3 class="section-title">Protocolo de Despliegue</h3>
             
-            <!-- Video de Referencia -->
             <div class="video-box">
                 <iframe src="https://www.youtube.com/embed/SU4EwD-GofE?rel=0&modestbranding=1" title="Instrucciones 5am Followers" allowfullscreen></iframe>
             </div>
 
-            <!-- Tríptico de Pasos -->
             <div class="steps-grid">
                 <div class="step-card">
                     <div class="step-num">1</div>
@@ -623,7 +643,7 @@
             </div>
         </section>
 
-        <!-- PREGUNTAS FRECUENTES (HASTA ABAJO) -->
+        <!-- PREGUNTAS FRECUENTES -->
         <section class="faq-section">
             <h3 class="section-title">Preguntas Frecuentes</h3>
 
@@ -664,7 +684,7 @@
 
     </div>
 
-    <!-- MODAL PROFESIONAL DE VENTA DIRECTA (DM INSTAGRAM) -->
+    <!-- MODAL DE PEDIDO -->
     <div class="modal-overlay" id="orderModal">
         <div class="modal-card">
             <div class="modal-icon">
@@ -676,7 +696,7 @@
             <div class="order-summary-box">
                 <div><span>Usuario:</span> <strong id="modal-user">@--</strong></div>
                 <div><span>Paquete:</span> <strong id="modal-qty">--</strong></div>
-                <div><span>Total:</span> <strong id="modal-total">$0.00 USD</strong></div>
+                <div><span>Total:</span> <strong id="modal-total">$0 MXN</strong></div>
             </div>
 
             <a id="instagram-link" href="#" target="_blank" class="btn-modal-action">
@@ -688,26 +708,101 @@
         </div>
     </div>
 
-    <!-- SCRIPT DE INTERACCIÓN -->
+    <!-- SCRIPT MATEMÁTICO DE INTERPOLACIÓN Y LÓGICA -->
     <script>
-        // CONFIGURACIÓN: Reemplaza con el usuario de Instagram oficial donde recibirás los pedidos
         const INSTAGRAM_OFFICIAL = "5am.followers_worldwide";
 
-        function calculatePrice() {
-            const select = document.getElementById('follower-tier');
-            const display = document.getElementById('display-price');
-            const selectedOption = select.options[select.selectedIndex];
-            const price = selectedOption.getAttribute('data-price');
+        // TABLA BASE MATEMÁTICA (Seguidores vs Precio)
+        const pricingTable = [
+            { qty: 500, price: 90 },
+            { qty: 1000, price: 120 },
+            { qty: 1500, price: 190 },
+            { qty: 2000, price: 210 },
+            { qty: 3000, price: 259 },
+            { qty: 5000, price: 385 },
+            { qty: 10000, price: 550 },
+            { qty: 15000, price: 780 },
+            { qty: 20000, price: 890 },
+            { qty: 30000, price: 1090 },
+            { qty: 40000, price: 1300 },
+            { qty: 50000, price: 1890 },
+            { qty: 100000, price: 2350 }
+        ];
 
-            if (price) {
-                display.innerHTML = `$${price} <span style="font-size: 1rem; color: var(--text-secondary);">USD</span>`;
+        let computedPrice = 0;
+        let finalQuantityText = "";
+
+        // ALGORITMO MATEMÁTICO DE INTERPOLACIÓN LINEAL
+        function calculateCustomAlgorithm(qty) {
+            if (qty <= 0) return 0;
+            
+            // Si es menor al mínimo (500)
+            if (qty < pricingTable[0].qty) {
+                const baseRate = pricingTable[0].price / pricingTable[0].qty;
+                return Math.round(qty * baseRate);
             }
+
+            // Buscar en qué intervalo se encuentra la cantidad ingresada
+            for (let i = 0; i < pricingTable.length - 1; i++) {
+                let p1 = pricingTable[i];
+                let p2 = pricingTable[i + 1];
+
+                if (qty >= p1.qty && qty <= p2.qty) {
+                    // Cálculo de la pendiente (m) = (P2 - P1) / (Q2 - Q1)
+                    let slope = (p2.price - p1.price) / (p2.qty - p1.qty);
+                    // Interpolación: P = P1 + slope * (Q - Q1)
+                    let interpolatedPrice = p1.price + slope * (qty - p1.qty);
+                    return Math.round(interpolatedPrice);
+                }
+            }
+
+            // Si supera la escala máxima (100,000+), aplicamos la tarifa por cada mil extra de la última escala
+            let lastTier = pricingTable[pricingTable.length - 1];
+            let prevTier = pricingTable[pricingTable.length - 2];
+            let extendedRate = (lastTier.price - prevTier.price) / (lastTier.qty - prevTier.qty);
+            let extraPrice = lastTier.price + (extendedRate * (qty - lastTier.qty));
+            return Math.round(extraPrice);
+        }
+
+        function handleTierChange() {
+            const select = document.getElementById('follower-tier');
+            const customContainer = document.getElementById('custom-container');
+            const display = document.getElementById('display-price');
+
+            if (select.value === 'custom') {
+                customContainer.style.display = 'block';
+                document.getElementById('custom-qty-input').focus();
+                calculateCustomPrice();
+            } else {
+                customContainer.style.display = 'none';
+                const selectedOption = select.options[select.selectedIndex];
+                const price = parseFloat(selectedOption.getAttribute('data-price'));
+                computedPrice = price;
+                finalQuantityText = `${parseInt(select.value).toLocaleString()} Followers`;
+                display.innerHTML = `$${price.toLocaleString()} <span style="font-size: 1rem; color: var(--text-secondary);">MXN</span>`;
+            }
+        }
+
+        function calculateCustomPrice() {
+            const customInput = document.getElementById('custom-qty-input');
+            const display = document.getElementById('display-price');
+            const qty = parseInt(customInput.value);
+
+            if (isNaN(qty) || qty <= 0) {
+                display.innerHTML = `$0 <span style="font-size: 1rem; color: var(--text-secondary);">MXN</span>`;
+                computedPrice = 0;
+                finalQuantityText = "0 Followers";
+                return;
+            }
+
+            computedPrice = calculateCustomAlgorithm(qty);
+            finalQuantityText = `${qty.toLocaleString()} Followers (Cotización Especial)`;
+            display.innerHTML = `$${computedPrice.toLocaleString()} <span style="font-size: 1rem; color: var(--text-secondary);">MXN</span>`;
         }
 
         function openOrderModal() {
             const user = document.getElementById('target-user').value.trim();
             const select = document.getElementById('follower-tier');
-            const selectedOption = select.options[select.selectedIndex];
 
             if (!user) {
                 alert("Por favor ingresa tu nombre de usuario de Instagram.");
@@ -716,27 +811,27 @@
             }
 
             if (!select.value) {
-                alert("Por favor selecciona una cantidad de seguidores.");
+                alert("Por favor selecciona una escala o ingresa una cantidad personalizada.");
                 select.focus();
                 return;
             }
 
-            const qtyText = selectedOption.text.split('//')[0].trim();
-            const price = selectedOption.getAttribute('data-price');
+            if (select.value === 'custom' && (!computedPrice || computedPrice <= 0)) {
+                alert("Ingresa una cantidad válida de seguidores.");
+                document.getElementById('custom-qty-input').focus();
+                return;
+            }
 
-            // Cargar datos en la modal
+            // Datos para la modal
             document.getElementById('modal-user').innerText = user.startsWith('@') ? user : `@${user}`;
-            document.getElementById('modal-qty').innerText = qtyText;
-            document.getElementById('modal-total').innerText = `$${price} USD`;
+            document.getElementById('modal-qty').innerText = finalQuantityText;
+            document.getElementById('modal-total').innerText = `$${computedPrice.toLocaleString()} MXN`;
 
-            // Construir mensaje e enlace
-            const textMessage = `Hola! Quiero activar la orden para ${user}. Paquete: ${qtyText} ($${price} USD). Vengo desde la página web de 5am Followers.`;
-            
-            // Enlace directo al chat/perfil con texto listo
+            // Construir enlace directo
+            const textMessage = `Hola! Quiero activar la orden para ${user}. Paquete: ${finalQuantityText} ($${computedPrice.toLocaleString()} MXN). Vengo desde la página web de 5am Followers.`;
             const igUrl = `https://www.instagram.com/${INSTAGRAM_OFFICIAL}/`;
             document.getElementById('instagram-link').href = igUrl;
 
-            // Abrir Modal
             document.getElementById('orderModal').classList.add('active');
         }
 
