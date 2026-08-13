@@ -1,8 +1,3 @@
-Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
- * Tabla de precios exacta: Actualizada a tus nuevos valores en pesos/moneda local (se ajustó el display para reflejar la moneda correctamente).
- * Sistema de Cotización Personalizada Avanzado:
-   * Si el usuario selecciona la opción "Cotización Personalizada (Otra cantidad)", se despliega un campo de entrada interactivo.
-   * Motor matemático de precios: Utiliza una interpolación lineal basada en tus 13 rangos de precios base. Esto garantiza que cualquier cantidad que el usuario escriba (por ejemplo, 7,500 o 25,000 seguidores) reciba un precio proporcional, justo y totalmente acorde a tu escala de descuentos por volumen.
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,6 +18,9 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
             --emerald-main: #006A4E;
             --emerald-light: #00844F;
             --emerald-glow: rgba(0, 106, 78, 0.4);
+
+            /* Verde WhatsApp */
+            --whatsapp-green: #25D366;
             
             --text-primary: #f5f5f7;
             --text-secondary: #86868b;
@@ -139,6 +137,7 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
             text-decoration: none;
         }
 
+        .social-btn.whatsapp { color: #25D366; }
         .social-btn.instagram { color: #E4405F; }
         .social-btn.tiktok { color: #25F4EE; text-shadow: -1px 0 #FE2C55; }
         .social-btn.facebook { color: #1877F2; }
@@ -463,13 +462,13 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: rgba(0, 106, 78, 0.15);
-            border: 1px solid var(--emerald-light);
-            color: var(--emerald-light);
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid var(--whatsapp-green);
+            color: var(--whatsapp-green);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: 0 auto 18px auto;
         }
 
@@ -506,7 +505,7 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
         .order-summary-box div:last-child { margin-bottom: 0; }
 
         .btn-modal-action {
-            background: linear-gradient(135deg, #E4405F 0%, #C13584 100%);
+            background: var(--whatsapp-green);
             color: #ffffff;
             border: none;
             padding: 16px;
@@ -518,8 +517,8 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            box-shadow: 0 8px 20px rgba(228, 64, 95, 0.3);
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
             transition: var(--transition-smooth);
             text-decoration: none;
         }
@@ -558,12 +557,13 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
         <!-- CABECERA -->
         <header class="brand-header">
             <div class="badge-status">
-                <i class="fa-solid fa-circle"></i> Private Network Access
+                <i class="fa-solid fa-circle"></i> Access Private
             </div>
             <h1>5am Followers</h1>
             <p>La autoridad digital no se pide, se adquiere. Posiciona tu perfil en la cima del algoritmo con infraestructura de crecimiento instantáneo.</p>
             
             <div class="social-matrix">
+                <a href="#" class="social-btn whatsapp" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 <a href="#" class="social-btn instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="social-btn tiktok" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
                 <a href="#" class="social-btn facebook" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -575,7 +575,7 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
         <section class="checkout-card">
             
             <div class="input-group">
-                <label class="input-label">1. Nombre de Usuario</label>
+                <label class="input-label">1. Link del perfil</label>
                 <input type="text" id="target-user" class="custom-input" placeholder="@tu_usuario_oficial" autocomplete="off">
             </div>
 
@@ -605,6 +605,20 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
                 <div class="custom-quantity-container" id="custom-container">
                     <label class="input-label" style="margin-top: 15px;">Escribe la cantidad exacta deseada:</label>
                     <input type="number" id="custom-qty-input" class="custom-input" placeholder="Ej. 7500, 25000, 150000..." min="100" oninput="calculateCustomPrice()">
+                </div>
+            </div>
+
+            <!-- SELECCIÓN DE MÉTODO DE PAGO -->
+            <div class="input-group">
+                <label class="input-label">3. Método de Pago</label>
+                <div class="select-box">
+                    <select id="payment-method" class="custom-select">
+                        <option value="" disabled selected>Selecciona tu forma de pago</option>
+                        <option value="BBVA">Transferencia BBVA</option>
+                        <option value="Mercado Pago">Mercado Pago</option>
+                        <option value="Oxxo">Depósito en Oxxo</option>
+                        <option value="Criptomonedas">Criptomonedas (USDT/BTC)</option>
+                    </select>
                 </div>
             </div>
 
@@ -642,8 +656,8 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
                 </div>
                 <div class="step-card">
                     <div class="step-num">3</div>
-                    <h4>Enviar por DM</h4>
-                    <p>Transfiere tu orden a nuestro Instagram para el inicio.</p>
+                    <h4>Enviar por WhatsApp</h4>
+                    <p>Transfiere tu orden a nuestro equipo por WhatsApp.</p>
                 </div>
             </div>
         </section>
@@ -654,11 +668,11 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
 
             <div class="faq-item">
                 <div class="faq-question">
-                    <span>¿Por qué la venta se finaliza en Instagram?</span>
+                    <span>¿Por qué la venta se finaliza en WhatsApp?</span>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Garantiza un trato directo, verificación manual de la cuenta de destino para evitar errores y métodos de pago seguros asistidos por un operador.
+                    Garantiza un trato directo, verificación manual de la cuenta de destino para evitar errores y entrega inmediata de datos de pago asistidos por un operador.
                 </div>
             </div>
 
@@ -668,7 +682,7 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    Jamás. Solo requerimos tu nombre de usuario y que el perfil se mantenga público durante la entrega.
+                    Jamás. Solo requerimos tu link o usuario y que el perfil se mantenga público durante la entrega.
                 </div>
             </div>
 
@@ -678,13 +692,13 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
-                    El procesamiento inicia en minutos tras confirmar la transferencia en el chat directo de Instagram.
+                    El procesamiento inicia en minutos tras confirmar la transferencia en el chat directo de WhatsApp.
                 </div>
             </div>
         </section>
 
         <footer>
-            &copy; 2026 5AM FOLLOWERS. ALL RIGHTS RESERVED.
+            &copy; 2026 5AM FOLLOWERS.
         </footer>
 
     </div>
@@ -693,29 +707,31 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
     <div class="modal-overlay" id="orderModal">
         <div class="modal-card">
             <div class="modal-icon">
-                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-whatsapp"></i>
             </div>
             <h3>Orden Preparada</h3>
-            <p>Se ha generado tu ficha de pedido. Para iniciar el envío inmediato, envía el resumen directo a nuestra cuenta oficial de Instagram.</p>
+            <p>Se ha generado tu ficha de pedido. Para iniciar el envío inmediato, envía los datos directamente a nuestro soporte de WhatsApp.</p>
             
             <div class="order-summary-box">
-                <div><span>Usuario:</span> <strong id="modal-user">@--</strong></div>
+                <div><span>Usuario/Link:</span> <strong id="modal-user">@--</strong></div>
                 <div><span>Paquete:</span> <strong id="modal-qty">--</strong></div>
+                <div><span>Método de Pago:</span> <strong id="modal-payment">--</strong></div>
                 <div><span>Total:</span> <strong id="modal-total">$0 MXN</strong></div>
             </div>
 
-            <a id="instagram-link" href="#" target="_blank" class="btn-modal-action">
-                <i class="fa-regular fa-paper-plane"></i>
-                <span>Enviar DM e Iniciar Orden</span>
+            <a id="whatsapp-link" href="#" target="_blank" class="btn-modal-action">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>Enviar Orden por WhatsApp</span>
             </a>
 
             <button class="btn-close-modal" onclick="closeOrderModal()">Modificar Orden</button>
         </div>
     </div>
 
-    <!-- SCRIPT MATEMÁTICO DE INTERPOLACIÓN Y LÓGICA -->
+    <!-- SCRIPT MATEMÁTICO Y REDIRECCIÓN A WHATSAPP -->
     <script>
-        const INSTAGRAM_OFFICIAL = "5am.followers_worldwide";
+        // CONFIGURA AQUÍ TU NÚMERO DE WHATSAPP (Con código de país, ej: 521XXXXXXXXXX)
+        const TELEFONO_WHATSAPP = "521234567890";
 
         // TABLA BASE MATEMÁTICA (Seguidores vs Precio)
         const pricingTable = [
@@ -741,27 +757,22 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
         function calculateCustomAlgorithm(qty) {
             if (qty <= 0) return 0;
             
-            // Si es menor al mínimo (500)
             if (qty < pricingTable[0].qty) {
                 const baseRate = pricingTable[0].price / pricingTable[0].qty;
                 return Math.round(qty * baseRate);
             }
 
-            // Buscar en qué intervalo se encuentra la cantidad ingresada
             for (let i = 0; i < pricingTable.length - 1; i++) {
                 let p1 = pricingTable[i];
                 let p2 = pricingTable[i + 1];
 
                 if (qty >= p1.qty && qty <= p2.qty) {
-                    // Cálculo de la pendiente (m) = (P2 - P1) / (Q2 - Q1)
                     let slope = (p2.price - p1.price) / (p2.qty - p1.qty);
-                    // Interpolación: P = P1 + slope * (Q - Q1)
                     let interpolatedPrice = p1.price + slope * (qty - p1.qty);
                     return Math.round(interpolatedPrice);
                 }
             }
 
-            // Si supera la escala máxima (100,000+), aplicamos la tarifa por cada mil extra de la última escala
             let lastTier = pricingTable[pricingTable.length - 1];
             let prevTier = pricingTable[pricingTable.length - 2];
             let extendedRate = (lastTier.price - prevTier.price) / (lastTier.qty - prevTier.qty);
@@ -807,35 +818,51 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
 
         function openOrderModal() {
             const user = document.getElementById('target-user').value.trim();
-            const select = document.getElementById('follower-tier');
+            const selectTier = document.getElementById('follower-tier');
+            const selectPayment = document.getElementById('payment-method');
 
             if (!user) {
-                alert("Por favor ingresa tu nombre de usuario de Instagram.");
+                alert("Por favor ingresa el link o usuario de tu perfil.");
                 document.getElementById('target-user').focus();
                 return;
             }
 
-            if (!select.value) {
+            if (!selectTier.value) {
                 alert("Por favor selecciona una escala o ingresa una cantidad personalizada.");
-                select.focus();
+                selectTier.focus();
                 return;
             }
 
-            if (select.value === 'custom' && (!computedPrice || computedPrice <= 0)) {
+            if (selectTier.value === 'custom' && (!computedPrice || computedPrice <= 0)) {
                 alert("Ingresa una cantidad válida de seguidores.");
                 document.getElementById('custom-qty-input').focus();
                 return;
             }
 
-            // Datos para la modal
-            document.getElementById('modal-user').innerText = user.startsWith('@') ? user : `@${user}`;
+            if (!selectPayment.value) {
+                alert("Por favor selecciona tu método de pago preferido.");
+                selectPayment.focus();
+                return;
+            }
+
+            const paymentMethod = selectPayment.value;
+
+            // Mostrar Datos en la Modal
+            document.getElementById('modal-user').innerText = user.startsWith('@') || user.startsWith('http') ? user : `@${user}`;
             document.getElementById('modal-qty').innerText = finalQuantityText;
+            document.getElementById('modal-payment').innerText = paymentMethod;
             document.getElementById('modal-total').innerText = `$${computedPrice.toLocaleString()} MXN`;
 
-            // Construir enlace directo
-            const textMessage = `Hola! Quiero activar la orden para ${user}. Paquete: ${finalQuantityText} ($${computedPrice.toLocaleString()} MXN). Vengo desde la página web de 5am Followers.`;
-            const igUrl = `https://www.instagram.com/${INSTAGRAM_OFFICIAL}/`;
-            document.getElementById('instagram-link').href = igUrl;
+            // Construir Mensaje de WhatsApp
+            const message = `Hola 5am Followers! 🚀 Deseo activar la siguiente orden:\n\n` +
+                            `📌 *Perfil/Link:* ${user}\n` +
+                            `📈 *Paquete:* ${finalQuantityText}\n` +
+                            `💳 *Método de Pago:* ${paymentMethod}\n` +
+                            `💰 *Total:* $${computedPrice.toLocaleString()} MXN\n\n` +
+                            `Quedo a la espera de las instrucciones para realizar el pago.`;
+
+            const waUrl = `https://wa.me/${TELEFONO_WHATSAPP}?text=${encodeURIComponent(message)}`;
+            document.getElementById('whatsapp-link').href = waUrl;
 
             document.getElementById('orderModal').classList.add('active');
         }
@@ -866,4 +893,3 @@ Aquí tienes el código actualizado. Se aplicaron dos mejoras principales:
 
 </body>
 </html>
-
