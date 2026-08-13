@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Boost PRO — Elevamos tu Presencia Digital</title>
+    <style>
+        /* --- FUNDAMENTOS DE DISEÑO ESTILO APPLE --- */
+        :root {
+            /* Paleta de colores */
+            --bg-color: #f5f5f7;
+            --main-text: #1d1d1f;
+            --secondary-text: #6e6e73;
+            --accent-blue: #0071e3;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border-color: rgba(0,0,0,0.1);
+            
+            /* Fuentes del sistema (simulando San Francisco) */
+            --font-stack: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            
+            /* Efectos */
+            --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+            --shadow-soft: 0 8px 30px rgba(0,0,0,0.05);
+            --blur-effect: blur(20px) saturate(180%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            background-color: var(--bg-color);
+            color: var(--main-text);
+            overflow-x: hidden;
+            line-height: 1.47059;
+            letter-spacing: -0.022em;
+        }
+
+        /* --- BARRA DE NAVEGACIÓN (STICKY) --- */
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 52px;
+            background-color: rgba(251, 251, 253, 0.8);
+            backdrop-filter: var(--blur-effect);
+            -webkit-backdrop-filter: var(--blur-effect);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        nav .logo {
+            font-size: 19px;
+            font-weight: 600;
+            letter-spacing: -0.05em;
+        }
+
+        /* --- CONTENEDOR ESTRATÉGICO --- */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding-top: 100px;
+            padding-bottom: 80px;
+            text-align: center;
+            animation: fadeIn 1s var(--ease-in-out);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            line-height: 1.07143;
+            font-weight: 700;
+            letter-spacing: -0.005em;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 734px) { .hero h1 { font-size: 40px; } }
+
+        .hero p {
+            font-size: 24px;
+            color: var(--secondary-text);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        /* Iconos de Redes Sociales */
+        .social-icons-bar {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .social-icons-bar svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--secondary-text);
+            transition: fill 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons-bar svg:hover {
+            fill: var(--accent-blue);
+            transform: scale(1.1);
+        }
+
+        /* --- SECCIÓN PASOS (VIDEO DE REFERENCIA) --- */
+        .steps-section {
+            background-color: #fff;
+            padding: 80px 0;
+            border-radius: 30px;
+            margin-bottom: 80px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 60px;
+            letter-spacing: -0.01em;
+        }
+
+        .steps-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        @media (max-width: 734px) {
+            .steps-wrapper { grid-template-columns: 1fr; }
+        }
+
+        /* Contenedor del video estilo Apple (bordes limpios, sombra) */
+        .video-container {
+            position: relative;
+            padding-bottom: 177.77%; /* Aspecto 9:16 (Vertical tipo Reel/TikTok) */
+            height: 0;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #000;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 4px solid #1d1d1f; /* Simulación de bisel de teléfono */
+        }
+
+        .video-container iframe, 
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .steps-list {
+            list-style: none;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 35px;
+        }
+
+        .step-number {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-right: 20px;
+            line-height: 1;
+            width: 40px;
+            text-align: center;
+        }
+
+        .step-text h3 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .step-text p {
+            font-size: 17px;
+            color: var(--secondary-text);
+        }
+
+        /* --- SECCIÓN DE CONFIGURADOR DE PEDIDO --- */
+        .order-section {
+            padding-bottom: 100px;
+        }
+
+        .order-card {
+            background-color: var(--card-bg);
+            backdrop-filter: var(--blur-effect);
+            -webkit-backdrop-filter: var(--blur-effect);
+            border-radius: 30px;
+            padding: 50px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-soft);
+        }
+
+        @media (max-width: 734px) { .order-card { padding: 30px; } }
+
+        .form-group {
+            margin-bottom: 35px;
+        }
+
+        .label-style {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--secondary-text);
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Inputs y Selects Estilo Apple */
+        input[type="text"], 
+        select {
+            width: 100%;
+            padding: 18px 20px;
+            font-size: 17px;
+            font-family: var(--font-stack);
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid #d2d2d7;
+            border-radius: 12px;
+            color: var(--main-text);
+            transition: all 0.3s var(--ease-in-out);
+            -webkit-appearance: none; /* Reset para iOS */
+        }
+
+        input[type="text"]:focus, 
+        select:focus {
+            outline: none;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
+        }
+
+        /* Contenedor relativo para el icono del select */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 12px;
+            color: var(--secondary-text);
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        /* Display de Precio Visual estratégico */
+        .price-display {
+            text-align: center;
+            margin-top: 20px;
+            animation: priceChange 0.3s ease;
+        }
+
+        .price-display span {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .price-label {
+            font-size: 17px;
+            color: var(--secondary-text);
+            display: block;
+            margin-bottom: -5px;
+        }
+
+        /* BOTÓN COMPRAR (IGUAL QUE APPLE STORE) */
+        .btn-purchase {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 40px auto 0 auto;
+            padding: 18px 30px;
+            background-color: var(--accent-blue);
+            color: #fff;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s var(--ease-in-out);
+            box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
+        }
+
+        .btn-purchase:hover {
+            background-color: #0077ed;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 113, 227, 0.4);
+        }
+
+        .btn-purchase:active {
+            transform: translateY(0);
+        }
+
+        /* --- SECCIÓN FAQ --- */
+        .faq-section {
+            padding: 80px 0;
+            background-color: #fff;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .faq-list {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 25px 0;
+        }
+
+        .faq-item:last-child { border-bottom: none; }
+
+        .faq-question {
+            font-size: 19px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            font-size: 17px;
+            color: var(--secondary-text);
+            display: none; /* Se activa con JS */
+            padding-top: 10px;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            background-color: var(--bg-color);
+            font-size: 12px;
+            color: var(--secondary-text);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- ANIMACIONES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes priceChange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Barra de Navegación Minimalista -->
+    <nav>
+        <div class="logo">Social Boost PRO</div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="container">
+
+        <!-- Hero: Título y Redes -->
+        <section class="hero">
+            <h1>Impulsa tu perfil.<br>Al estilo Pro.</h1>
+            <p>Selecciona tu paquete, envíanos tu link y nosotros nos encargamos del resto a través de nuestra venta directa en Instagram.</p>
+            
+            <!-- Iconos SVG minimalistas -->
+            <div class="social-icons-bar">
+                <!-- Instagram -->
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849s-.012 3.584-.069 4.849c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.849-.07c-3.26-.149-4.771-1.699-4.919-4.919-.058-1.265-.069-1.645-.069-4.849s.012-3.584.069-4.849c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                <!-- TikTok -->
+                <svg viewBox="0 0 24 24"><path d="M12.525.965c.026-.02.051-.04.076-.065C13.8.3 15.11 0 16.5 0c.11 0 .22.004.33.011v4.32c-.21-.035-.421-.051-.63-.051-1.55 0-2.97.711-3.9 1.91v13.01c0 2.65-2.15 4.8-4.8 4.8-2.65 0-4.8-2.15-4.8-4.8 0-2.65 2.15-4.8 4.8-4.8.42 0 .82.06 1.21.16v-4.34c-.4-.07-.81-.11-1.21-.11-5.08 0-9.2 4.12-9.2 9.2 0 5.08 4.12 9.2 9.2 9.2 5.08 0 9.2-4.12 9.2-9.2V6.606c1.11.851 2.47 1.351 3.94 1.351.11 0 .21-.004.32-.009V3.62c-.17.02-.34.031-.51.031-2.02 0-3.83-1.031-4.91-2.686z"/></svg>
+                <!-- Facebook -->
+                <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                <!-- YouTube -->
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186c-.28-.1.454-.111-2.821-.111H3.323c-2.27 0-2.54.011-2.821.111-.27.1-.49.31-.59.58-.1.27-.11 1.071-.11 3.121v4.02c0 2.05.01 2.851.11 3.121.1.27.32.48.59.58.28.1.551.111 2.821.111h17.354c2.27 0 2.54-.011 2.821-.111.27-.1.49-.31.59-.58.1-.27.11-1.071.11-3.121v-4.02c0-2.05-.01-2.851-.11-3.121-.1-.27-.32-.48-.59-.58zM9.54 15.568V8.432L15.818 12l-6.278 3.568z"/></svg>
+            </div>
+        </section>
+
+        <!-- Sección Pasos a seguir y Video -->
+        <section class="steps-section">
+            <div class="container">
+                <h2 class="section-title">Pasos a seguir Pro</h2>
+                <div class="steps-wrapper">
+                    <!-- Columna Video (Izquierda) -->
+                    <div class="video-column">
+                        <div class="video-container">
+                            <!-- INSTRUCCIONES VIDEO: 
+                                 Opción A: Subir video propio a la carpeta y usar <video controls src="pasos.mp4"></video>
+                                 Opción B: Usar YouTube/Vimeo embebido (Actualizado a YouTube Shorts/Vertical)
+                            -->
+                            <iframe src="https://www.youtube.com/embed/SU4EwD-GofE?controls=1&modestbranding=1&rel=0" title="Pasos a seguir Social Boost PRO" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    
+                    <!-- Columna Texto (Derecha) -->
+                    <div class="steps-column">
+                        <ul class="steps-list">
+                            <li class="step-item">
+                                <div class="step-number">1</div>
+                                <div class="step-text">
+                                    <h3>Cuenta Pública</h3>
+                                    <p>Asegúrate de que tu cuenta no esté en privado. Esto es crucial para iniciar el servicio.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">2</div>
+                                <div class="step-text">
+                                    <h3>Video de Referencia</h3>
+                                    <p>Visualiza el video a tu izquierda. Ahí explicamos dinámicamente el proceso completo.</p>
+                                </div>
+                            </li>
+                            <li class="step-item">
+                                <div class="step-number">3</div>
+                                <div class="step-text">
+                                    <h3>Enviar Link y Pago</h3>
+                                    <p>Configura tu pedido abajo, ingresa tu usuario y serás redireccionado a nuestro Instagram para el pago y envío de link.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Configurar Pedido -->
+        <section class="order-section">
+            <h2 class="section-title">Configura tu Impulso</h2>
+            <div class="order-card">
+                
+                <!-- Paso 1: Usuario -->
+                <div class="form-group">
+                    <label class="label-style" for="username">Paso 1: Tu Usuario de Instagram</label>
+                    <input type="text" id="username" placeholder="@tu_usuario" required>
+                </div>
+
+                <!-- Paso 2: Cantidad -->
+                <div class="form-group">
+                    <label class="label-style">Paso 2: Elige la cantidad de Seguidores</label>
+                    <div class="select-wrapper">
+                        <!-- PRECIOS EDITABLES AQUÍ -->
+                        <select id="quantity-select" onchange="updatePrice()">
+                            <option value="" disabled selected>Selecciona un paquete</option>
+                            <option value="5" data-price="10.00">500 Seguidores</option>
+                            <option value="10" data-price="18.00">1,000 Seguidores (Ahorra 10%)</option>
+                            <option value="25" data-price="40.00">2,500 Seguidores (Ahorra 20%)</option>
+                            <option value="50" data-price="75.00">5,000 Seguidores (Paquete Pro)</option>
+                            <option value="100" data-price="140.00">10,000 Seguidores (Influencer Kit)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Visualización de Precio Estratégica -->
+                <div class="form-group price-display" id="price-area" style="display:none;">
+                    <span class="price-label">Total a pagar en Instagram</span>
+                    <span id="price-value">0.00</span><span class="currency"> USD</span>
+                </div>
+
+                <!-- Botón de Acción -->
+                <button class="btn-purchase" onclick="redirectToInstagram()">Comprar Ahora</button>
+            </div>
+        </section>
+
+        <!-- Sección FAQ (Preguntas Finales) -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="section-title">Preguntas Frecuentes</h2>
+                <div class="faq-list">
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">¿Por qué me redirecciona a Instagram?</div>
+                        <div class="faq-answer">Para brindarte un servicio profesional y personalizado. En Instagram verificamos tu cuenta, concretamos el pago de forma segura y damos seguimiento directo a tu pedido.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">¿Es seguro para mi cuenta?</div>
+                        <div class="faq-answer">Totalmente. No requerimos tu contraseña. Solo necesitamos que tu cuenta sea pública durante el proceso. Nuestros métodos cumplen con los estándares de seguridad.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">¿Cuánto tiempo tarda en completarse?</div>
+                        <div class="faq-answer">Una vez confirmado el pago en Instagram, el inicio suele ser casi inmediato, y la finalización depende del tamaño del paquete seleccionado, generalmente entre 24 a 72 horas.</div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">¿Cuáles son los métodos de pago?</div>
+                        <div class="faq-answer">Aceptamos diversos métodos (PayPal, Cripto, Transferencia, etc.). Los detalles específicos y disponibilidad según tu país te los proporcionaremos directamente en el chat de Instagram.</div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Minimalista -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Social Boost PRO. Todos los derechos reservados.</p>
+            <p style="font-size: 10px; margin-top: 5px;">Este sitio no está afiliado con Instagram, Facebook, TikTok o YouTube.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT PARA FUNCIONALIDAD LIMPIA -->
+    <script>
+        // Configuración - CAMBIA ESTO
+        const tuUsuarioInstagram = "TU_USUARIO_IG"; // Tu usuario de IG sin el @
+
+        // 1. Actualizar Precio Dinámicamente
+        function updatePrice() {
+            const select = document.getElementById('quantity-select');
+            const priceArea = document.getElementById('price-area');
+            const priceValue = document.getElementById('price-value');
+            
+            const selectedOption = select.options[select.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+
+            if (price) {
+                priceValue.innerText = price;
+                priceArea.style.display = 'block';
+                // Animación de cambio de precio
+                priceArea.style.animation = 'none';
+                priceArea.offsetHeight; /* trigger reflow */
+                priceArea.style.animation = null; 
+            } else {
+                priceArea.style.display = 'none';
+            }
+        }
+
+        // 2. Lógica de Redirección Profesional
+        function redirectToInstagram() {
+            const username = document.getElementById('username').value.trim();
+            const select = document.getElementById('quantity-select');
+            const selectedOption = select.options[select.selectedIndex];
+            
+            // Validaciones estratégicas
+            if (!username) {
+                alert("Por favor, ingresa tu usuario de Instagram para continuar.");
+                document.getElementById('username').focus();
+                return;
+            }
+            if (!selectedOption.value) {
+                alert("Por favor, selecciona una cantidad de seguidores.");
+                select.focus();
+                return;
+            }
+
+            const cantidad = selectedOption.text;
+            const precio = selectedOption.getAttribute('data-price');
+
+            // Crear el mensaje predefinido para el chat
+            const mensaje = `Hola Pro! Quiero el paquete de: ${cantidad} por ${precio} USD. Mi usuario es: ${username}. Vengo de la página web.`;
+            const mensajeCodificado = encodeURIComponent(mensaje);
+
+            // Intentar abrir la App de Instagram directamente (Deeplink)
+            // Si falla, abre la versión web.
+            const instagramUrlApp = `instagram://camera`; // Intento de abrir app
+            const instagramUrlWeb = `https://www.instagram.com/${tuUsuarioInstagram}/?utm_source=ig_web_copy_link&ig_mid=1&message=${mensajeCodificado}`;
+            
+            // Creamos un enlace temporal para el mensaje de texto directo si es posible
+            // Nota: La API pública de IG no permite pre-cargar mensajes en el DM fácilmente por seguridad,
+            // pero redireccionamos al perfil para que peguen el mensaje o inicien chat.
+            
+            // Lo más efectivo profesionalmente es enviarlos a tu perfil con el texto en el portapapeles 
+            // (esto requiere JS avanzado) o simplemente abrir el perfil. 
+            // Usaremos la ruta directa al perfil más limpia.
+
+            const perfilUrl = `https://www.instagram.com/${tuUsuarioInstagram}/`;
+
+            // Mostramos un mensaje final antes de salir
+            alert(`¡Excelente elección! Te estamos redireccionando a nuestro Instagram.\n\nPor favor, envíanos un DM con la frase:\n"${mensaje}"\n\npara concretar tu pedido de inmediato.`);
+
+            window.location.href = perfilUrl;
+        }
+
+        // 3. Funcionalidad del FAQ (Acordeón limpo)
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', event => {
+                const answer = item.nextElementSibling;
+                const isVisible = answer.style.display === 'block';
+                
+                // Cerrar todas las respuestas abiertas
+                document.querySelectorAll('.faq-answer').forEach(el => el.style.display = 'none');
+                
+                // Abrir la actual si estaba cerrada
+                answer.style.display = isVisible ? 'none' : 'block';
+            });
+        });
+    </script>
+</body>
+</html>
